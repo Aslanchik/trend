@@ -63,11 +63,16 @@ module.exports = {
       );
       if (!valid) throw new UserInputError("Errors", { errors });
       // 2. Make sure email doesnt already exist
-      const user = await User.findOne({ email });
+      const emailExists = await User.findOne({ email });
+      const usernameExists = await User.findOne({ username });
 
-      if (user) {
+      if (emailExists) {
         throw new UserInputError("Email is taken", {
           errors: { email: "This email is taken." },
+        });
+      } else if (usernameExists) {
+        throw new UserInputError("Username is taken", {
+          errors: { email: "This username is taken." },
         });
       }
       // 3. Create new user
@@ -83,7 +88,7 @@ module.exports = {
       //  3.3 Save new user to DB
       const res = await newUser.save();
       //   3.4 Create JWT
-      const token = generateToken(res);
+      const token = generateJwt(res);
       // 3.5 Return created user with Id and JWT
       return {
         ...res._doc,

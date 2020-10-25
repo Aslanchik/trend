@@ -7,8 +7,12 @@ const typeDefs = require("./graphql/typeDefs");
 
 // Define Apollo Server
 const server = new ApolloServer({
+  // Type definitions of the data to query/mutate
   typeDefs,
+  // How the data is queried/mutated
   resolvers,
+  // Get the req metadata/headers etc
+  context: ({ req }) => ({ req }),
 });
 
 // Init connection to mongodb
