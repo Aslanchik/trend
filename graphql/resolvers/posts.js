@@ -35,6 +35,10 @@ module.exports = {
       });
       // Save new post to db
       const post = await newPost.save();
+      // Publish that a new post has been made to whomever has subscribed to this event
+      context.pubsub.publish("NEW_POST", {
+        newPost: post,
+      });
       // Return it
       return post;
     },
@@ -54,6 +58,13 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
+    },
+  },
+  Subscription: {
+    // Declare a subscription
+    newPost: {
+      // Subscribe to this specific Event NEW_POST
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("NEW_POST"),
     },
   },
 };
