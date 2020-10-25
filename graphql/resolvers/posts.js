@@ -26,6 +26,8 @@ module.exports = {
     async createPost(_, { body }, context) {
       // Authenticate user using request headers that are inside the context provided by apollo server
       const user = checkAuth(context);
+      // Validate that post body is not empty
+      if (body.trim() === "") throw new Error("Post body must not be empty.");
       // If authentication went smoothly create a new post
       const newPost = new Post({
         body,
