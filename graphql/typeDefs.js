@@ -1,17 +1,20 @@
 const { gql } = require("apollo-server");
 
 module.exports = gql`
+  # Type definition for a Comment
   type Comment {
     id: ID!
     body: String!
     username: String!
     createdAt: String!
   }
+  # Type definition for a Like
   type Like {
     id: ID!
     username: String!
     createdAt: String!
   }
+  # Type definition for a Post
   type Post {
     id: ID!
     body: String!
@@ -22,6 +25,7 @@ module.exports = gql`
     likeCount: Int!
     commentCount: Int!
   }
+  # Type definition for a User
   type User {
     id: ID!
     email: String!
@@ -29,6 +33,7 @@ module.exports = gql`
     username: String!
     createdAt: String!
   }
+  # Type definition for a Register Input
   input RegisterInput {
     username: String!
     password: String!

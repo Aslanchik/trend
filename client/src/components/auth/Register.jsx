@@ -1,7 +1,8 @@
+import React, {useState, useContext} from 'react';
 import { gql, useMutation } from '@apollo/client';
-import React, {useState} from 'react';
 import {Button, Form} from 'semantic-ui-react'
 
+import {AuthContext} from "../../context/authContext";
 import {useForm} from "../../util/customHooks";
 
 const Register = (props) => {
@@ -13,13 +14,14 @@ const Register = (props) => {
     }
     const [errors, setErrors] = useState({});
     const {values, onChange, onSubmit} = useForm(handleRegister, initState);
-
+    const {login:authContextLogin} = useContext(AuthContext)
     // Destructure function that will fire off the mutation and loading variable
     // useMutation(Mutation that we declared, Object that contains options)
     const [registerUser, {loading}] = useMutation(REGISTER_USER,
         {
         // Callback when mutation finishes
-        update(proxy, res){
+        update(proxy, {data:{register:userData}}){
+            authContextLogin(userData);
             props.history.push('/');
         },
         // Callback when mutation fails

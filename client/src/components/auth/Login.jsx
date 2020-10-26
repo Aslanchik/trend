@@ -1,19 +1,21 @@
 import { gql, useMutation } from '@apollo/client';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Button, Form} from 'semantic-ui-react'
 
+import {AuthContext} from "../../context/authContext"
 import {useForm} from "../../util/customHooks";
 
 const Login = (props) => {
-
     const [errors, setErrors] = useState({});
     const {values, onChange, onSubmit} = useForm(handleLogin, {email:'', password:''});
+    const {login:authContextLogin} = useContext(AuthContext)
     // Destructure function that will fire off the mutation and loading variable
     // useMutation(Mutation that we declared, Object that contains options)
     const [loginUser, {loading}] = useMutation(LOGIN_USER,
         {
         // Callback when mutation finishes
-        update(proxy, res){
+        update(proxy, {data:{login:userData}}){
+            authContextLogin(userData);
             props.history.push('/');
         },
         // Callback when mutation fails
