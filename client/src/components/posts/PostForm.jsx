@@ -22,6 +22,9 @@ const PostForm = () => {
             }})
             // Reset input field
             values.body ='';
+        },
+        onError(err){
+            return err;
         }
     })
 
@@ -30,13 +33,22 @@ const PostForm = () => {
     }
 
     return ( 
+        <>
         <Form onSubmit={onSubmit}>
             <h2>Create a post:</h2>
             <Form.Field>
-        <Form.Input placeholder="Hi world!" name="body" type="textarea" onChange={onChange} value={values.body}/>
+        <Form.Input placeholder="Hi world!" name="body" type="textarea" onChange={onChange} error={error ? true: false} value={values.body}/>
         <Button type="submit" color="pink">Post!</Button>
             </Form.Field>
         </Form>
+        {error && (
+            <div className="ui error message" style={{marginBottom:20, fontSize:'1rem'}}>
+                <ul className="list">
+                    <li>{error.graphQLErrors[0].message}</li>
+                </ul>
+            </div>
+        )}
+        </>
      );
 }
 
