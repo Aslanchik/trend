@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {useMutation} from "@apollo/client";
-import {Button, Icon, Label} from "semantic-ui-react";
+import {Button, Icon, Label, Popup} from "semantic-ui-react";
 
 import {LIKE_POST_MUTATION} from "../../util/gql/gqlMutations";
 
@@ -16,7 +16,7 @@ const LikeBtn = ({user, post:{id, likes, likeCount}}) => {
     const [likePost, {error}] = useMutation(LIKE_POST_MUTATION, {
         variables:{postId: id},
         onError(err){
-            return err;
+            return error;
         }
     } )
 
@@ -37,12 +37,12 @@ const LikeBtn = ({user, post:{id, likes, likeCount}}) => {
     }
 
     return ( 
-        <Button as='div' labelPosition='right' onClick={likePost}>
+        <Popup content="Like post" inverted trigger={<Button as='div' labelPosition='right' onClick={likePost}>
       {renderLikeButton()}
       <Label as='a' basic color='pink' pointing='left'>
         {likeCount}
       </Label>
-    </Button>
+    </Button>}/>
      );
 }
  

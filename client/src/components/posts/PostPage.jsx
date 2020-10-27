@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import {useQuery, useMutation} from "@apollo/client";
 import { FETCH_SINGLE_POST_QUERY } from '../../util/gql/gqlQueries';
-import {Image, Grid, Card, Button, Icon, Label, Form} from "semantic-ui-react";
+import {Image, Grid, Card, Button, Icon, Label, Form, Popup} from "semantic-ui-react";
 import moment from "moment";
 
 import LikeBtn from './LikeBtn';
@@ -72,21 +72,11 @@ const PostPage = (props) => {
                     <hr></hr>
                     <Card.Content extra>
                         <LikeBtn user={user} post={{id, likes, likeCount}}/>
-                        <Button as="div" labelPosition="right" onClick={()=> console.log("comment")}>
-                            <Button basic color="blue">
-                                <Icon name="comment"/>
-                            </Button>
-                            <Label basic color="blue" pointing="left">
-                                {commentCount}
-                            </Label>
-                        </Button>
                         {user && user.username === username && <DeleteBtn postId={id} callback={deletePostRedirect}/>}
                     </Card.Content>
                     </Card>
                     {user && (
                         <Card fluid>
-
-
                             <Card.Content>
                             <p>Post a comment:</p>
                             <Form onSubmit={onSubmit}>
