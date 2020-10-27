@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext({
   user: null,
-  login: (user) => {},
+  login: (userData) => {},
   logout: () => {},
 });
 
@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, { user: null }, () => {
     if (localStorage.getItem("jwt")) {
       const decodedToken = jwtDecode(localStorage.getItem("jwt"));
-      console.log(decodedToken);
       if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem("jwt");
       } else {

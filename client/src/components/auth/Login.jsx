@@ -1,9 +1,11 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import React, {useState, useContext} from 'react';
 import {Button, Form} from 'semantic-ui-react'
 
 import {AuthContext} from "../../context/authContext"
 import {useForm} from "../../util/customHooks";
+
+import {LOGIN_USER_MUTATION} from "../../util/gql/gqlMutations";
 
 const Login = (props) => {
     const [errors, setErrors] = useState({});
@@ -11,7 +13,7 @@ const Login = (props) => {
     const {login:authContextLogin} = useContext(AuthContext)
     // Destructure function that will fire off the mutation and loading variable
     // useMutation(Mutation that we declared, Object that contains options)
-    const [loginUser, {loading}] = useMutation(LOGIN_USER,
+    const [loginUser, {loading}] = useMutation(LOGIN_USER_MUTATION,
         {
         // Callback when mutation finishes
         update(proxy, {data:{login:userData}}){
@@ -65,23 +67,5 @@ const Login = (props) => {
         </div>
      );
 }
-
-// Declare mutation
-const LOGIN_USER = gql`
-# First we declare which mutation we are sending and what types of variable are we sending
-mutation login(
-    $email:String!
-    $password:String!
-){
-    # Second we assign the variables to the data that is being sent
-    login(
-            email:$email
-            password:$password
-    ){
-        # Third we specify what data we want to get back from the request
-        id email username createdAt token
-    }
-}
-`
  
 export default Login;

@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import {Button, Form} from 'semantic-ui-react'
 
 import {AuthContext} from "../../context/authContext";
 import {useForm} from "../../util/customHooks";
+import {REGISTER_USER_MUTATION} from "../../util/gql/gqlMutations";
 
 const Register = (props) => {
     const initState = {
@@ -17,7 +18,7 @@ const Register = (props) => {
     const {login:authContextLogin} = useContext(AuthContext)
     // Destructure function that will fire off the mutation and loading variable
     // useMutation(Mutation that we declared, Object that contains options)
-    const [registerUser, {loading}] = useMutation(REGISTER_USER,
+    const [registerUser, {loading}] = useMutation(REGISTER_USER_MUTATION,
         {
         // Callback when mutation finishes
         update(proxy, {data:{register:userData}}){
@@ -87,28 +88,4 @@ const Register = (props) => {
      );
 }
 
-// Declare mutation
-const REGISTER_USER = gql`
-# First we declare which mutation we are sending and what types of variable are we sending
-mutation register(
-    $username:String!
-    $email:String!
-    $password:String!
-    $confirmPassword:String!
-){
-    # Second we specify what data is sent and assigning the data into the registerInput type
-    register(
-        registerInput:{
-            username:$username
-            email:$email
-            password:$password
-            confirmPassword:$confirmPassword
-        }
-    ){
-        # Third we specify what data we want to get back from the request
-        id email username createdAt token
-    }
-}
-`
- 
 export default Register;

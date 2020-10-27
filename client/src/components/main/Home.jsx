@@ -1,37 +1,29 @@
-import React from 'react';
-import {gql, useQuery} from "@apollo/client";
+import React, {useContext} from 'react';
+import {useQuery} from "@apollo/client";
 import {Grid} from "semantic-ui-react";
 
-import PostCard from "./PostCard";
+import PostCard from "../posts/PostCard";
+import {AuthContext} from "../../context/authContext"
+import PostForm from "../posts/PostForm";
+import {FETCH_POSTS_QUERY}  from "../../util/gql/gqlQueries";
 
-const FETCH_POSTS_QUERY = gql`
-query{
-  getPosts{
-    id
-    username
-    body
-    createdAt
-    likeCount
-    likes{
-      username
-    }
-    comments{
-      id
-      username
-      body
-      createdAt
-    }
-    commentCount
-  }
-}`
 
 const Home = () => {
     const { loading, data:{getPosts:posts}={}} = useQuery(FETCH_POSTS_QUERY);
+
+    const {user} = useContext(AuthContext)
 
     return ( 
     <Grid columns={3}>
       <Grid.Row className="pageTitle">
         <h1>Recent Posts</h1>
+      </Grid.Row>
+      <Grid.Row className="pageTitle">
+      {user ? 
+        <Grid.Column>
+          <PostForm/>
+        </Grid.Column>
+      : null}
       </Grid.Row>
       <Grid.Row>
         {loading ? (
