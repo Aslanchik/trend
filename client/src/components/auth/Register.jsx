@@ -45,7 +45,7 @@ const Register = (props) => {
                 placeholder="Username.."
                 name="username"
                 type="text"
-                error={errors.username ? true: false}
+                error={errors.username}
                 value={values.username}
                 onChange={onChange}/>
                 <Form.Input
@@ -53,7 +53,7 @@ const Register = (props) => {
                 placeholder="Email.."
                 name="email"
                 type="email"
-                error={errors.email ? true: false}
+                error={errors.email}
                 value={values.email}
                 onChange={onChange}/>
                 <Form.Input
@@ -61,7 +61,7 @@ const Register = (props) => {
                 placeholder="Password.."
                 name="password"
                 type="password"
-                error={errors.password ? true: false}
+                error={errors.password}
                 value={values.password}
                 onChange={onChange}/>
                 <Form.Input
@@ -69,7 +69,7 @@ const Register = (props) => {
                 placeholder="Repeat Password.."
                 name="confirmPassword"
                 type="password"
-                error={errors.confirmPassword ? true: false}
+                error={errors.confirmPassword}
                 value={values.confirmPassword}
                 onChange={onChange}/>
                 <Button type="submit" color="pink">

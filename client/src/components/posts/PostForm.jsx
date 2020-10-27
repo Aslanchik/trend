@@ -16,7 +16,7 @@ const PostForm = () => {
             const data = proxy.readQuery({
                 query:FETCH_POSTS_QUERY
             })
-            // Push
+            // Push new post unto the head of the posts array in the cache
             proxy.writeQuery({query:FETCH_POSTS_QUERY, data:{
                 getPosts:[res.data.createPost, ...data.getPosts]
             }})
@@ -37,7 +37,7 @@ const PostForm = () => {
         <Form onSubmit={onSubmit}>
             <h2>Create a post:</h2>
             <Form.Field>
-        <Form.Input placeholder="Hi world!" name="body" type="textarea" onChange={onChange} error={error ? true: false} value={values.body}/>
+        <Form.Input placeholder="Hi world!" name="body" type="textarea" onChange={onChange} error={error} value={values.body}/>
         <Button type="submit" color="pink">Post!</Button>
             </Form.Field>
         </Form>

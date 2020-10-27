@@ -6,6 +6,7 @@ import PostCard from "../posts/PostCard";
 import {AuthContext} from "../../context/authContext"
 import PostForm from "../posts/PostForm";
 import {FETCH_POSTS_QUERY}  from "../../util/gql/gqlQueries";
+import Spinner from '../../util/Spinner';
 
 
 const Home = () => {
@@ -25,17 +26,19 @@ const Home = () => {
         </Grid.Column>
       : null}
       </Grid.Row>
-      <Grid.Row>
         {loading ? (
-          <h1>Loading posts..</h1>
-        ) :  (<Transition.Group>
+          <Grid.Row style={{marginTop:80}}>
+            <Spinner size="huge"/>
+          </Grid.Row>
+        ) :  (<Grid.Row>
+        <Transition.Group>
           {posts.map(post =>(
           <Grid.Column key={post.id} style={{marginBottom:20}}>
             <PostCard post={post}/>
           </Grid.Column>))}
         </Transition.Group>
-        )}
       </Grid.Row>
+        )}
     </Grid>
      );
 }

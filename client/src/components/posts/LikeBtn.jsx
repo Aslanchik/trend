@@ -13,8 +13,11 @@ const LikeBtn = ({user, post:{id, likes, likeCount}}) => {
         }else setLiked(false);
     }, [user,likes])
 
-    const [likePost] = useMutation(LIKE_POST_MUTATION, {
-        variables:{postId: id}
+    const [likePost, {error}] = useMutation(LIKE_POST_MUTATION, {
+        variables:{postId: id},
+        onError(err){
+            return err;
+        }
     } )
 
     const renderLikeButton = () =>{
