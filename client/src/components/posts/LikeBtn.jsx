@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {useMutation} from "@apollo/client";
-import {Button, Icon, Label, Popup} from "semantic-ui-react";
+import {Button, Icon, Label} from "semantic-ui-react";
 
 import {LIKE_POST_MUTATION} from "../../util/gql/gqlMutations";
 
@@ -23,26 +23,29 @@ const LikeBtn = ({user, post:{id, likes, likeCount}}) => {
     const renderLikeButton = () =>{
         if(user){
             if(liked){
-                return <Button color='pink'>
+                return <Button color='pink' className="likeBtnFilled">
         <Icon name='heart' />
       </Button>;
             } else {
-                return <Button color='pink'basic>
-        <Icon name='heart' />
+                return <Button color='pink' className="likeBtnEmpty" animated basic>
+                  <Button.Content hidden>Like</Button.Content>
+                  <Button.Content visible>
+                      <Icon name='heart' />
+                  </Button.Content>
       </Button>
             }
-        } else return <Button as={Link} to="/login" color='pink'basic>
+        } else return <Button as={Link} to="/login" color='pink' basic>
         <Icon name='heart' />
       </Button>
     }
 
     return ( 
-        <Popup content="Like post" inverted trigger={<Button as='div' labelPosition='right' onClick={likePost}>
+        <Button as='div' labelPosition='right' onClick={likePost}>
       {renderLikeButton()}
       <Label as='a' basic color='pink' pointing='left'>
         {likeCount}
       </Label>
-    </Button>}/>
+    </Button>
      );
 }
  

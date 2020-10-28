@@ -1,5 +1,5 @@
 import React,{useContext, useState} from 'react';
-import {Menu} from "semantic-ui-react";
+import {Container, Menu, Popup} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 import {AuthContext} from "../../context/authContext"
@@ -15,21 +15,25 @@ const Navbar = () => {
 
     return ( 
         <Menu pointing secondary size="massive" color="pink" style={{marginBottom:30}}>
+          <Container>
           <Menu.Item
             name='home'
-            active={activeItem === 'home'}
             onClick={handleItemClick}
+            active={activeItem === 'home' || user?.username}
             as={Link}
+            link
             to="/"
           />
           {user ? (
-          <Menu.Menu position='right'>
-          <Menu.Item
+            <Menu.Menu position='right'>
+            <Popup content="My posts" inverted className="pink" trigger={<Menu.Item
             name={user.username}
-            active
+            onClick={()=> setActiveItem('myPosts')}
+            active={activeItem === 'myPosts'}
             as={Link}
-            to="/"
-          />
+            className="myPostsMenuLink"
+            to="/myPosts"
+          />}/>
             <Menu.Item
               name='logout'
               active={activeItem === 'logout'}
@@ -43,6 +47,7 @@ const Navbar = () => {
             active={activeItem === 'login'}
             onClick={handleItemClick}
             as={Link}
+            
             to="/login"
           />
           <Menu.Item
@@ -53,8 +58,8 @@ const Navbar = () => {
             to="/register"
           />
           </Menu.Menu>
-
           )}
+          </Container>
         </Menu>
      );
 }

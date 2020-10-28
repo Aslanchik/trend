@@ -1,6 +1,5 @@
 import React from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {Container} from "semantic-ui-react";
 
 import './styles/main.scss';
 import Login from "./components/auth/Login"
@@ -15,7 +14,7 @@ const App = () => {
   return (
     <AuthProvider>
     <BrowserRouter>
-      <Container>
+
     <header>
       <Navbar/>
     </header>
@@ -23,7 +22,6 @@ const App = () => {
     <AuthRoute exact path="/login" component={Login}/>
     <AuthRoute exact path="/register" component={Register}/>
     <Route exact path="/posts/:postId" component={PostPage}/>
-    </Container>
     </BrowserRouter>
     </AuthProvider>
   );

@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import {useQuery, useMutation} from "@apollo/client";
 import { FETCH_SINGLE_POST_QUERY } from '../../util/gql/gqlQueries';
-import {Image, Grid, Card, Button, Icon, Label, Form, Popup} from "semantic-ui-react";
+import {Image, Grid, Card, Form} from "semantic-ui-react";
 import moment from "moment";
 
 import LikeBtn from './LikeBtn';
@@ -26,8 +26,7 @@ const PostPage = (props) => {
                 username, 
                 comments, 
                 likes, 
-                likeCount, 
-                commentCount
+                likeCount
                 } = {}
         } = {}
          } = useQuery(FETCH_SINGLE_POST_QUERY, {
@@ -54,7 +53,7 @@ const PostPage = (props) => {
         <Spinner size="huge"/>
     )
       : 
-      ( <Grid>
+      ( <Grid centered>
         <Grid.Row>
             <Grid.Column width={2}>
             <Image floated='left'
@@ -62,8 +61,8 @@ const PostPage = (props) => {
           src='https://pbs.twimg.com/profile_images/568315995207372800/mExnhAK5_400x400.jpeg'/>
             </Grid.Column>
         
-            <Grid.Column width={10}>
-                <Card fluid>
+            <Grid.Column width={10} >
+                <Card fluid centered>
                     <Card.Content>
                         <Card.Header>{username}</Card.Header>
                         <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
