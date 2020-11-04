@@ -28,7 +28,10 @@ if (process.env.NODE_ENV === "production") {
 const PORT = process.env.PORT || 8181;
 // Init connection to mongodb
 mongoose
-  .connect(MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB || MONGODB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     //   Init Apollo Server
     return server.listen({ port: PORT }).then((res) => {

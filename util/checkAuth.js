@@ -13,7 +13,7 @@ module.exports = (context) => {
     if (token) {
       // If there is a token attached to the auth header verify it
       try {
-        const user = jwt.verify(token, SECRET_KEY);
+        const user = jwt.verify(token, process.env.SECRET_KEY || SECRET_KEY);
         return user;
       } catch (err) {
         //   If the token is invalid throw error

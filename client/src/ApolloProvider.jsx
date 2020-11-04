@@ -3,7 +3,7 @@ import {setContext} from "@apollo/client/link/context";
 
 // Create link to apollo server
 const httpLink = createHttpLink({
-    uri:"http://localhost:8181"
+    uri:"https://trend-mreng.herokuapp.com/"
 })
 
 // Create link that attaches auth token from localStorage to request
