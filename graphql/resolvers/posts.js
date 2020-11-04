@@ -12,14 +12,6 @@ module.exports = {
         throw new Error(err);
       }
     },
-    getMyPosts: async (_, { userId }) => {
-      try {
-        const posts = await Post.find({ user: userId }).sort({ createdAt: -1 });
-        return posts;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
     getPost: async (_, { postId }) => {
       try {
         const post = await Post.findById(postId);

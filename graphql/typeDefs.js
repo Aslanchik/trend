@@ -43,7 +43,6 @@ module.exports = gql`
   # Queries get data
   type Query {
     getPosts: [Post]
-    getMyPosts(userId: ID!): [Post]
     getPost(postId: ID!): Post
   }
   # Mutations change the data (add, delete, update etc)
