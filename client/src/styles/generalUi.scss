@@ -15,6 +15,7 @@
 .ui.basic.blue.buttons.animated .button {
   box-shadow: 0 0 0 1px $DARK_BLUE inset !important;
   color: $LIGHT_BLUE !important;
+  width: 65px !important;
   &:hover {
     box-shadow: 0 0 0 1px $DARK_BLUE inset !important;
     color: $LIGHT_BLUE !important;
@@ -61,4 +62,9 @@ a.ui.basic.blue.label:hover {
 .submitCommentBtn {
   background-color: $LIGHT_PURPLE !important;
   color: $WHITE !important;
+}
+
+.commentBtnText {
+  font-size: 0.8rem;
+  top: 45% !important;
 }

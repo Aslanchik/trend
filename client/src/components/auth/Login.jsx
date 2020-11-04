@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, {useState, useContext} from 'react';
-import {Form} from 'semantic-ui-react'
+import {Container, Form} from 'semantic-ui-react'
 
 import {AuthContext} from "../../context/authContext"
 import {useForm} from "../../util/customHooks";
@@ -33,6 +33,7 @@ const Login = (props) => {
     }
 
     return ( 
+        <>
         <div className="loginWrapper">
             <img src="/img/login.svg" alt="login illustartion" className="loginImg" data-aos="fade-right"/>
             <Form onSubmit={onSubmit} noValidate className={loading ? "loading loginForm": 'loginForm'} data-aos="fade-left">
@@ -54,6 +55,8 @@ const Login = (props) => {
                 onChange={onChange}/>
                 <SubmitBtn/>
             </Form>
+        </div>
+        <Container>
             {/* If the errors object is not empty display error message in a list */}
             {Object.keys(errors).length > 0 && <div className="ui error message" data-aos="fade-left">
                 <ul className="list">
@@ -62,7 +65,8 @@ const Login = (props) => {
                     ))}
                 </ul>
             </div>}
-        </div>
+        </Container>
+            </>
      );
 }
  

@@ -14,7 +14,7 @@ const Navbar = () => {
     const handleItemClick = (e, {name}) => setActiveItem(name);
 
     return ( 
-        <Menu pointing secondary size="massive" color="pink" style={{marginBottom:30}}>
+        <Menu pointing secondary size="massive" color="pink" style={{marginBottom:30}} data-aos="fade-down">
           <Container>
           <Menu.Item
             name='home'

@@ -27,13 +27,13 @@ const PostCard = ({post:{id,username,createdAt,body, likeCount, commentCount, li
       <Card.Content extra>
         <LikeBtn user={user} post={{id, likes, likeCount}}/>
         <Button labelPosition='right' as={Link} to={`/posts/${id}`}>
-      <Button animated color='blue'basic>
-        <Button.Content hidden>Comment</Button.Content>
+      <Button animated color='blue' basic>
+        <Button.Content className="commentBtnText" hidden>Comment</Button.Content>
         <Button.Content visible>
         <Icon name='comment' />
         </Button.Content>
       </Button>
-      <Label as='a' basic color='blue' pointing='left'>
+      <Label basic color='blue' pointing='left'>
         {commentCount}
       </Label>
     </Button>
