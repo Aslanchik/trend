@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {useQuery} from "@apollo/client";
-import {Grid, Transition} from "semantic-ui-react";
+import {Grid, Transition, Container} from "semantic-ui-react";
 
 import PostCard from "../posts/PostCard";
 import {AuthContext} from "../../context/authContext"
@@ -15,13 +15,15 @@ const Home = () => {
     const {user} = useContext(AuthContext)
 
     return ( 
+      <Container>
     <Grid columns={3}>
       <Grid.Row className="pageTitle">
-        <h1>Recent Posts</h1>
+        <h1>TREND</h1>
       </Grid.Row>
-      <Grid.Row className="pageTitle">
+      <Grid.Row>
       {user ? 
         <Grid.Column>
+          <h3>Share your thought?</h3>
           <PostForm/>
         </Grid.Column>
       : null}
@@ -40,6 +42,7 @@ const Home = () => {
       </Grid.Row>
         )}
     </Grid>
+      </Container>
      );
 }
 

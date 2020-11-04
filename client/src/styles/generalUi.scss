@@ -1,9 +1,18 @@
 .ui.basic.pink.button,
 .ui.basic.pink.buttons.animated .button {
-  box-shadow: 0 0 0 1px $PURPLE inset !important;
-  color: $PURPLE !important;
+  box-shadow: 0 0 0 1px $DARK_PINK inset !important;
+  color: $PINK !important;
   &:hover {
-    box-shadow: 0 0 0 1px $PURPLE inset !important;
-    color: $PURPLE !important;
+    box-shadow: 0 0 0 1px $DARK_PINK inset !important;
+    color: $PINK !important;
   }
+}
+.ui.pink.pointing.label {
+  color: $PURPLE !important;
+  border-color: $PURPLE !important;
+}
+
+.ui.blue.pointing.label {
+  color: $LIGHT_PURPLE !important;
+  border-color: $PURPLE !important;
 }

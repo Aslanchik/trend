@@ -1,10 +1,11 @@
 import React, {useState, useContext} from 'react';
 import { useMutation } from '@apollo/client';
-import {Button, Form} from 'semantic-ui-react'
+import {Form} from 'semantic-ui-react'
 
 import {AuthContext} from "../../context/authContext";
 import {useForm} from "../../util/customHooks";
 import {REGISTER_USER_MUTATION} from "../../util/gql/gqlMutations";
+import SubmitBtn from './SubmitBtn';
 
 const Register = (props) => {
     const initState = {
@@ -72,9 +73,7 @@ const Register = (props) => {
                 error={errors.confirmPassword}
                 value={values.confirmPassword}
                 onChange={onChange}/>
-                <Button type="submit" color="pink">
-                    Submit
-                </Button>
+                <SubmitBtn/>
             </Form>
             {/* If the errors object is not empty display error message in a list */}
             {Object.keys(errors).length > 0 && <div className="ui error message">

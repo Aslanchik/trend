@@ -4,11 +4,12 @@
 @import "./generalUi.scss";
 @import "./home.scss";
 @import "./navbar.scss";
+@import "./mediaQueries.scss";
 
 body {
   background-color: $WHITE;
   box-sizing: border-box;
   min-height: 100%;
   color: $BLACK;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif !important;
 }
