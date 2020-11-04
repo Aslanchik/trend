@@ -97,7 +97,7 @@ const PostPage = (props) => {
       Comments
     </Header>
                     {comments.map(comment => (
-                        <Comment>
+                        <Comment key={comment.id}>
       <Comment.Avatar src='/img/female_avatar.svg' />
       <Comment.Content>
         <Comment.Author as="span">{comment.username}</Comment.Author>
