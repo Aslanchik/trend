@@ -54,9 +54,9 @@ const PostPage = (props) => {
         <Spinner size="huge"/>
     )
       : 
-      ( <Grid >
+      ( <Grid data-aos="fade-in" >
         <Grid.Row centered>
-            <Grid.Column width={1}>
+            <Grid.Column width={1} data-aos="fade-right">
             <Image floated='left'
           size='small'
           src='/img/female_avatar.svg'/>

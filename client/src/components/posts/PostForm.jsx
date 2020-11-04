@@ -39,7 +39,7 @@ const PostForm = () => {
             <h2>Share a thought</h2>
             <Form.Field>
                 <div className="ui action right labeled input">
-                    <input placeholder="Hi world!" name="body" type="textarea" onChance={onChange} error={error} value={values.body}/>
+                    <input placeholder="Hi world!" name="body" type="textarea" onChange={onChange} error={error} value={values.body}/>
         <SubmitBtn btnClass="postBtn"/>
                 </div>
             </Form.Field>

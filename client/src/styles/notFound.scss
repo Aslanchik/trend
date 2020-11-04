@@ -1,0 +1,17 @@
+.notFoundWrapper {
+  margin-top: 4%;
+  .notFoundImg {
+    width: 85%;
+  }
+  h2 {
+    color: $DARK_PURPLE !important;
+    font-family: "Ubuntu", sans-serif !important;
+  }
+  a {
+    color: $PURPLE !important;
+    font-family: "Ubuntu", sans-serif !important;
+    &:hover {
+      color: $LIGHT_PURPLE !important;
+    }
+  }
+}

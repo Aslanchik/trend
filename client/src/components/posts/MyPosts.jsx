@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {useQuery} from "@apollo/client";
-import {Grid, Container} from "semantic-ui-react";
+import {Grid, Container, Header} from "semantic-ui-react";
 
 import { FETCH_MY_POSTS_QUERY } from '../../util/gql/gqlQueries';
 import PostCard from "./PostCard";
@@ -13,15 +13,20 @@ const MyPosts = () => {
         variables:{userId:user.id}
     });
     console.log(posts);
-    return ( <Container>
+    return ( <Container className="myPostsContainer" data-aos="fade-in">
     <Grid doubling stackable columns={3}>
+        <Grid.Row centered>
+            <Header as='h1' dividing className="myPostsTitle">
+      My Posts
+    </Header>
+        </Grid.Row>
         {loading ? (
           <Grid.Row style={{marginTop:80}}>
             <Spinner size="huge"/>
           </Grid.Row>
-        ) :  (<Grid.Row style={{marginTop:30}}>
+        ) :  (<Grid.Row>
           {posts.map(post =>(
-          <Grid.Column  key={post.id} style={{marginBottom:20}} data-aos="fade-right">
+          <Grid.Column  key={post.id} style={{marginBottom:20}}>
             <PostCard post={post}/>
           </Grid.Column>))}
       </Grid.Row>

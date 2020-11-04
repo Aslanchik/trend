@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -9,9 +9,11 @@ import Register from "./components/auth/Register"
 import Home from "./components/main/Home"
 import Navbar from "./components/navigation/Navbar";
 import {AuthProvider} from "./context/authContext";
-import AuthRoute from "./util/AuthRoute";
+import AuthenticatedRoute from "./util/AuthenticatedRoute";
 import PostPage from "./components/posts/PostPage";
 import MyPosts from "./components/posts/MyPosts";
+import PrivateRoute from "./util/PrivateRoute"
+import NotFound from "./util/NotFound";
 
 const App = () => {
   AOS.init();
@@ -21,11 +23,14 @@ const App = () => {
     <header>
       <Navbar/>
     </header>
+    <Switch>
     <Route exact path="/" component={Home}/>
-    <AuthRoute exact path="/login" component={Login}/>
-    <AuthRoute exact path="/register" component={Register}/>
+    <AuthenticatedRoute exact path="/login" component={Login}/>
+    <AuthenticatedRoute exact path="/register" component={Register}/>
     <Route exact path="/posts/:postId" component={PostPage}/>
-    <Route exact path="/myPosts" component={MyPosts}/>
+    <PrivateRoute exact path="/myPosts" component={MyPosts}/>
+    <Route path="*" component={NotFound}/>
+    </Switch>
     </BrowserRouter>
     </AuthProvider>
   );
