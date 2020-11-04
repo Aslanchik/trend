@@ -4,9 +4,8 @@ import {Form} from 'semantic-ui-react'
 
 import {AuthContext} from "../../context/authContext"
 import {useForm} from "../../util/customHooks";
-
 import {LOGIN_USER_MUTATION} from "../../util/gql/gqlMutations";
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from '../../util/SubmitBtn';
 
 const Login = (props) => {
     const [errors, setErrors] = useState({});
@@ -34,9 +33,9 @@ const Login = (props) => {
     }
 
     return ( 
-        <div className="ui container" style={{width:600}}>
-            <Form onSubmit={onSubmit} noValidate className={loading ? "loading": ''}>
-                <h1>Login</h1>
+        <div className="loginWrapper">
+            <img src="/img/login.svg" alt="login illustartion" className="loginImg" data-aos="fade-right"/>
+            <Form onSubmit={onSubmit} noValidate className={loading ? "loading loginForm": 'loginForm'} data-aos="fade-left">
                 <Form.Input
                 label="Email"
                 placeholder="Email.."
@@ -56,7 +55,7 @@ const Login = (props) => {
                 <SubmitBtn/>
             </Form>
             {/* If the errors object is not empty display error message in a list */}
-            {Object.keys(errors).length > 0 && <div className="ui error message">
+            {Object.keys(errors).length > 0 && <div className="ui error message" data-aos="fade-left">
                 <ul className="list">
                     { Object.values(errors).map(value=>(
                         <li key={value}>{value}</li>

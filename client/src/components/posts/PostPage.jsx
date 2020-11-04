@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import {useQuery, useMutation} from "@apollo/client";
 import { FETCH_SINGLE_POST_QUERY } from '../../util/gql/gqlQueries';
-import {Image, Grid, Card, Form} from "semantic-ui-react";
+import {Image, Grid, Card, Form, Comment, Header} from "semantic-ui-react";
 import moment from "moment";
 
 import LikeBtn from './LikeBtn';
@@ -10,13 +10,14 @@ import { AuthContext } from '../../context/authContext';
 import Spinner from "../../util/Spinner";
 import { CREATE_COMMENT_MUTATION } from '../../util/gql/gqlMutations';
 import {useForm} from "../../util/customHooks";
+import SubmitBtn from '../../util/SubmitBtn';
 
 const PostPage = (props) => {
     const postId = props.match.params.postId;
     const {user} = useContext(AuthContext);
     const commentInputRef = useRef(null);
     const {values, onChange, onSubmit} = useForm(handleCreateComment, {postId, body:''})
-
+    
     const {loading,
         data:{
             getPost:{
@@ -27,12 +28,13 @@ const PostPage = (props) => {
                 comments, 
                 likes, 
                 likeCount
-                } = {}
+            } = {}
         } = {}
-         } = useQuery(FETCH_SINGLE_POST_QUERY, {
+    } = useQuery(FETCH_SINGLE_POST_QUERY, {
         variables:{postId},
     });
-
+    
+    console.log(comments);
     const [createComment] = useMutation(CREATE_COMMENT_MUTATION, {
         variables:values,
         update(){
@@ -53,12 +55,12 @@ const PostPage = (props) => {
         <Spinner size="huge"/>
     )
       : 
-      ( <Grid centered>
-        <Grid.Row>
-            <Grid.Column width={2}>
+      ( <Grid >
+        <Grid.Row centered>
+            <Grid.Column width={1}>
             <Image floated='left'
           size='small'
-          src='https://pbs.twimg.com/profile_images/568315995207372800/mExnhAK5_400x400.jpeg'/>
+          src='/img/female_avatar.svg'/>
             </Grid.Column>
         
             <Grid.Column width={10} >
@@ -79,29 +81,36 @@ const PostPage = (props) => {
                             <Card.Content>
                             <p>Post a comment:</p>
                             <Form onSubmit={onSubmit}>
-                                <div className="ui action input fluid">
+                                <Form.Field>
+                                <div className="ui action right labeled input">
                                     <input type="textarea" placeholder="Comment.." name="body" value={values.body} onChange={onChange} ref={commentInputRef}/>
-                                    <button type="submit" className="ui button pink" disabled={values.body.trim() === ''} >Submit comment</button>
+                                    <SubmitBtn btnClass="submitCommentBtn" disabled={values.body.trim() === ''}/>
                                 </div>
+                                </Form.Field>
                             </Form>
                             </Card.Content>
                         </Card>
                     )}
+                    <Grid.Row centered>
+                        <Grid.Column width={16}>
+                    <Comment.Group>
+    <Header as='h3' dividing>
+      Comments
+    </Header>
                     {comments.map(comment => (
-                        <Card fluid key={comment.id}>
-                            <Card.Content>
-                                {user && user.username === comment.username && <DeleteBtn postId={id} commentId={comment.id}/>}
-                                <Card.Header>
-                                    {comment.username}
-                                </Card.Header>
-                                <Card.Meta>
-                                    {moment(comment.createdAt).fromNow()}
-                                </Card.Meta>
-                                <Card.Description>
-                                    {comment.body}
-                                </Card.Description>
-                            </Card.Content>
-                        </Card>))}
+                        <Comment>
+      <Comment.Avatar src='/img/female_avatar.svg' />
+      <Comment.Content>
+        <Comment.Author as="span">{comment.username}</Comment.Author>
+        <Comment.Metadata>
+          <div>{moment(comment.createdAt).fromNow()}</div>
+        </Comment.Metadata>
+        <Comment.Text>{comment.body}</Comment.Text>
+      </Comment.Content>
+    </Comment>))}
+    </Comment.Group>
+                        </Grid.Column>
+                    </Grid.Row>
             </Grid.Column>
         </Grid.Row>
     </Grid>)}

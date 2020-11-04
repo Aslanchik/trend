@@ -5,7 +5,7 @@ import {Form} from 'semantic-ui-react'
 import {AuthContext} from "../../context/authContext";
 import {useForm} from "../../util/customHooks";
 import {REGISTER_USER_MUTATION} from "../../util/gql/gqlMutations";
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from '../../util/SubmitBtn';
 
 const Register = (props) => {
     const initState = {
@@ -38,9 +38,9 @@ const Register = (props) => {
         registerUser();
     }
     return ( 
-        <div className="ui container" style={{width:600}}>
-            <Form onSubmit={onSubmit} noValidate className={loading ? "loading": ''}>
-                <h1>Register</h1>
+        <div className="registerWrapper">
+            <img src="/img/add_user.svg" alt="add user" className="registerImg" data-aos="fade-right"/>
+            <Form onSubmit={onSubmit} noValidate className={loading ? "loading registerForm": 'registerForm'} data-aos="fade-left">
                 <Form.Input
                 label="Username"
                 placeholder="Username.."
@@ -76,7 +76,7 @@ const Register = (props) => {
                 <SubmitBtn/>
             </Form>
             {/* If the errors object is not empty display error message in a list */}
-            {Object.keys(errors).length > 0 && <div className="ui error message">
+            {Object.keys(errors).length > 0 && <div className="ui error message" data-aos="fade-left">
                 <ul className="list">
                     { Object.values(errors).map(value=>(
                         <li key={value}>{value}</li>

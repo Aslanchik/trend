@@ -1,0 +1,36 @@
+.submitBtn {
+  background-color: $PURPLE !important;
+  transition: all 0.2s ease-in-out;
+  color: $WHITE !important;
+  width: 8rem;
+}
+
+.loginWrapper {
+  margin-top: 70px;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  .loginImg {
+    width: 300px;
+    margin-left: -90px;
+    margin-right: 90px;
+  }
+  .loginForm {
+    width: 400px;
+  }
+}
+
+.registerWrapper {
+  margin-top: 70px;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  .registerImg {
+    width: 300px;
+    margin-left: -90px;
+    margin-right: 90px;
+  }
+  .registerForm {
+    width: 400px;
+  }
+}

@@ -16,7 +16,7 @@ const PostCard = ({post:{id,username,createdAt,body, likeCount, commentCount, li
         <Image
           floated='right'
           size='mini'
-          src='https://pbs.twimg.com/profile_images/568315995207372800/mExnhAK5_400x400.jpeg'
+          src='/img/female_avatar.svg'
         />
         <Card.Header>{username}</Card.Header>
     <Card.Meta as={Link} to={`/posts/${id}`}>{moment(createdAt).fromNow()}</Card.Meta>

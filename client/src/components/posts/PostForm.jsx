@@ -1,10 +1,11 @@
 import React from 'react';
-import {Form, Button} from "semantic-ui-react";
+import {Form} from "semantic-ui-react";
 import {useMutation} from "@apollo/client";
 
 import {useForm} from '../../util/customHooks';
 import {FETCH_POSTS_QUERY} from "../../util/gql/gqlQueries"
 import {CREATE_POST_MUTATION} from "../../util/gql/gqlMutations";
+import SubmitBtn from '../../util/SubmitBtn';
 
 const PostForm = () => {
     const {values, onChange, onSubmit} = useForm(handleCreatePost, {body:''});
@@ -34,11 +35,13 @@ const PostForm = () => {
 
     return ( 
         <>
-        <Form onSubmit={onSubmit}>
-            <h2>Create a post:</h2>
+        <Form onSubmit={onSubmit} className="postForm">
+            <h2>Share a thought</h2>
             <Form.Field>
-        <Form.Input placeholder="Hi world!" name="body" type="textarea" onChange={onChange} error={error} value={values.body}/>
-        <Button type="submit" color="pink">Post!</Button>
+                <div className="ui action right labeled input">
+                    <input placeholder="Hi world!" name="body" type="textarea" onChance={onChange} error={error} value={values.body}/>
+        <SubmitBtn btnClass="postBtn"/>
+                </div>
             </Form.Field>
         </Form>
         {error && (

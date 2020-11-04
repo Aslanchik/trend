@@ -33,7 +33,7 @@ const DeleteBtn = ({postId,commentId, callback}) => {
 
     return ( 
         <>
-        <Button animated as="div" color="red" onClick={()=> setConfirmOpen(true)} floated="right">
+        <Button animated as="div" className="deleteBtn" onClick={()=> setConfirmOpen(true)} floated="right">
             <Button.Content hidden>Delete</Button.Content>
             <Button.Content visible>
         <Icon name="trash alternate outline" style={{margin:0}}/>

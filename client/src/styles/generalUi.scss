@@ -1,18 +1,64 @@
 .ui.basic.pink.button,
 .ui.basic.pink.buttons.animated .button {
-  box-shadow: 0 0 0 1px $DARK_PINK inset !important;
-  color: $PINK !important;
+  box-shadow: 0 0 0 1px $PURPLE inset !important;
+  color: $LIGHT_PURPLE !important;
   &:hover {
-    box-shadow: 0 0 0 1px $DARK_PINK inset !important;
-    color: $PINK !important;
+    box-shadow: 0 0 0 1px $PURPLE inset !important;
+    color: $PURPLE !important;
   }
 }
+.ui.basic.pink.button:focus {
+  box-shadow: 0 0 0 1px $PURPLE inset !important;
+  color: $PURPLE !important;
+}
+.ui.basic.blue.button,
+.ui.basic.blue.buttons.animated .button {
+  box-shadow: 0 0 0 1px $DARK_BLUE inset !important;
+  color: $LIGHT_BLUE !important;
+  &:hover {
+    box-shadow: 0 0 0 1px $DARK_BLUE inset !important;
+    color: $LIGHT_BLUE !important;
+  }
+}
+.likeBtnFilled {
+  background-color: $PURPLE !important;
+}
+
 .ui.pink.pointing.label {
   color: $PURPLE !important;
   border-color: $PURPLE !important;
+  &:hover {
+    color: $LIGHT_PURPLE !important;
+    border-color: $PURPLE !important;
+  }
+}
+.ui.basic.pink.labels a.label:hover,
+a.ui.basic.pink.label:hover {
+  color: $PURPLE !important;
+  border-color: $PURPLE !important;
+}
+.ui.basic.blue.labels a.label:hover,
+a.ui.basic.blue.label:hover {
+  color: $LIGHT_BLUE !important;
+  border-color: $DARK_BLUE !important;
 }
 
 .ui.blue.pointing.label {
-  color: $LIGHT_PURPLE !important;
-  border-color: $PURPLE !important;
+  color: $LIGHT_BLUE !important;
+  border-color: $DARK_BLUE !important;
+}
+
+.postBtn {
+  background-color: $LIGHT_PURPLE !important;
+  color: $WHITE !important;
+}
+
+.deleteBtn {
+  background-color: $RED !important;
+  color: $WHITE !important;
+}
+
+.submitCommentBtn {
+  background-color: $LIGHT_PURPLE !important;
+  color: $WHITE !important;
 }
