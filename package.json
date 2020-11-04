@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "serve": "node index",
-    "start": "nodemon index"
+    "start": "node index.js",
+    "install-client": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild":"npm run install-client && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aos": "^2.3.4",
     "apollo-server": "^2.18.2",
     "bcryptjs": "^2.4.3",
     "graphql": "^15.3.0",
