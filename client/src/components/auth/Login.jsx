@@ -33,9 +33,9 @@ const Login = (props) => {
     }
 
     return ( 
-        <Container>
-        <Grid stackable columns={3}>
-            <Grid.Row className="loginWrapper" centered>
+        <Container >
+        <Grid stackable columns={3} className="loginWrapper">
+            <Grid.Row  centered>
                 <Grid.Column width="5">
                     <Image src="/img/login.svg" size='medium' centered alt="login illustration" className="loginImg" data-aos="fade-right"/>
                 </Grid.Column>

@@ -39,8 +39,8 @@ const Register = (props) => {
     }
     return ( 
         <>
-        <Container>
-            <Grid stackable columns={3}>
+        <Container >
+            <Grid stackable columns={3} className="registerWrapper">
                 <Grid.Row>
                     <Grid.Column width="5">
             <Image src="/img/add_user.svg" size='medium' centered alt="login illustration" className="loginImg" data-aos="fade-right"/>
