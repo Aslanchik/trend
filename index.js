@@ -3,7 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const resolvers = require("./graphql/resolvers");
-const { MONGODB } = require("./config");
 const typeDefs = require("./graphql/typeDefs");
 
 const app = express();

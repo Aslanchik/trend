@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { AuthenticationError } = require("apollo-server");
 
-const { SECRET_KEY } = require("../config");
-
 module.exports = (context) => {
   // Get auth header from request headers
   const authHeader = context.req.headers.authorization;
@@ -13,7 +11,7 @@ module.exports = (context) => {
     if (token) {
       // If there is a token attached to the auth header verify it
       try {
-        const user = jwt.verify(token, process.env.SECRET_KEY || SECRET_KEY);
+        const user = jwt.verify(token, process.env.SECRET_KEY);
         return user;
       } catch (err) {
         //   If the token is invalid throw error
