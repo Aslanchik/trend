@@ -19,7 +19,7 @@ const Navbar = () => {
           <Menu.Item
             name='home'
             onClick={handleItemClick}
-            active={activeItem === 'home' || user?.username}
+            active={activeItem === 'home'}
             as={Link}
             link
             to="/"

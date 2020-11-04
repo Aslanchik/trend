@@ -1,5 +1,4 @@
-import React from 'react';
-import {ApolloClient, InMemoryCache, createHttpLink, ApolloProvider} from "@apollo/client";
+import {ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
 
 // Create link to apollo server
@@ -28,10 +27,6 @@ const client = new ApolloClient({
 })
 
 
-const ApProvider = ({children})=>{
-    return <ApolloProvider client={client}>
-        {children}
-    </ApolloProvider>
-}
 
-export default ApProvider;
+
+export default client;

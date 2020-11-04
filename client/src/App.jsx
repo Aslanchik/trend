@@ -11,6 +11,7 @@ import Navbar from "./components/navigation/Navbar";
 import {AuthProvider} from "./context/authContext";
 import AuthRoute from "./util/AuthRoute";
 import PostPage from "./components/posts/PostPage";
+import MyPosts from "./components/posts/MyPosts";
 
 const App = () => {
   AOS.init();
@@ -24,6 +25,7 @@ const App = () => {
     <AuthRoute exact path="/login" component={Login}/>
     <AuthRoute exact path="/register" component={Register}/>
     <Route exact path="/posts/:postId" component={PostPage}/>
+    <Route exact path="/myPosts" component={MyPosts}/>
     </BrowserRouter>
     </AuthProvider>
   );

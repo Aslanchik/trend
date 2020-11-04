@@ -34,7 +34,6 @@ const PostPage = (props) => {
         variables:{postId},
     });
     
-    console.log(comments);
     const [createComment] = useMutation(CREATE_COMMENT_MUTATION, {
         variables:values,
         update(){
