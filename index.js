@@ -1,11 +1,9 @@
 const { ApolloServer, PubSub } = require("apollo-server");
-const express = require("express");
 const mongoose = require("mongoose");
 
 const resolvers = require("./graphql/resolvers");
+const { MONGODB } = require("./config");
 const typeDefs = require("./graphql/typeDefs");
-
-const app = express();
 
 // Init PubSub for Subscriptions
 const pubsub = new PubSub();
@@ -19,10 +17,6 @@ const server = new ApolloServer({
   // Get the req metadata/headers etc and pubsub
   context: ({ req }) => ({ req, pubsub }),
 });
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(__dirname, "client/build"));
-}
 
 const PORT = process.env.PORT || 8181;
 // Init connection to mongodb
